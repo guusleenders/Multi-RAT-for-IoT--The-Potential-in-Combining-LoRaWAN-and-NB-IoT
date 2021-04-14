@@ -1,0 +1,65 @@
+\begin{tikzpicture}%[background rectangle/.style={fill=olive!45}, show background rectangle]
+
+
+
+\begin{axis}[
+    ybar stacked,
+    compat=newest, %Better label placement
+	bar width=1cm,
+	nodes near coords,
+	axis lines*=left,
+	width=\linewidth,
+	point meta=explicit symbolic, % <-- needed for custom labels txt
+    %y axis line style={opacity=0},
+    %ymajorticks=false,
+    %yticklabels={\empty},
+    enlargelimits=0.15,
+    legend style={at={(0.4,-0.20)}, draw={none},
+    anchor=north,legend columns=3, column sep=2ex, nodes={scale=0.7, transform shape}},
+    ylabel={Energy Consumption [\si{\joule}]},
+    %ymajorgrids=true,
+    symbolic x coords={Phase1, Phase2, Phase3},
+    xtick={Phase1, Phase2, Phase3},
+    axis line style={opacity=0},
+    x=2cm,
+    x tick style={opacity=0},
+    xticklabels ={{CE Level 0}, {CE Level 1}, {CE Level 2}},
+    x tick label style={font=\scriptsize,text width=1cm,align=center},
+    %y tick label style={font=\footnotesize}
+    enlarge x limits={abs=1cm},
+    yticklabel={\pgfmathparse{\tick}\pgfmathprintnumber{\pgfmathresult}},
+    label style={font=\scriptsize},
+    tick label style={font=\scriptsize},
+    clip=false,
+    extra y ticks = 0,
+    extra y tick labels={},
+    extra y tick style={grid=major,major grid style={ultra thin,draw=lightgray}},
+    every node near coord/.append style={font=\scriptsize}
+    ]
+%
+\addplot+[ybar, white!80!color0, %pattern color=color0,
+draw=color0,  fill=color0,
+%postaction={
+    %     pattern=north east lines
+    % }
+    ] plot coordinates {(Phase1,1.073) [16\%] (Phase2,0.965) [10\%] (Phase3,0.928) [8\%]};
+%
+\addplot+[ybar, white!80!color1,  fill=color1, draw=color1] plot coordinates {(Phase1,0.945) [14\%] (Phase2,2.685)[29\%] (Phase3,3.486)[31\%]};
+%
+\addplot+[ybar, black,  fill=color2, draw=color2] plot coordinates { (Phase1,0.518)[8\%] (Phase2,0.934)[10\%] (Phase3,1.679)[15\%]};
+%
+\addplot+[ybar, black,  fill=color3, draw=color3] plot coordinates {(Phase1,0.293)[4\%]  (Phase2,0.621)[7\%] (Phase3,1.181)[11\%]};
+%
+\addplot+[ybar, white!80!color4,  fill=color4, draw=color4] plot coordinates { (Phase1,3.038)[44\%] (Phase2,3.108)[33\%] (Phase3,2.978)[27\%]};
+%
+\addplot+[ybar,  white!90!color5, fill=color5, draw=color5] plot coordinates { (Phase1,1.012)[15\%] (Phase2,1.078)[12\%] (Phase3,1.039)[9\%]};
+%
+\node[align=center] at (axis cs:Phase1,7.38) {\scriptsize 6.88\si{\joule}}; %6.879
+%
+\node[align=center] at (axis cs:Phase2,9.89) {\scriptsize 9.39\si{\joule}}; %9.391
+%
+\node[align=center] at (axis cs:Phase3,11.79) {\scriptsize 11.29\si{\joule}‬};%11.291
+%
+\legend{Search, Join, Network, Packet, cDRX, eDRX}
+\end{axis}
+\end{tikzpicture}
